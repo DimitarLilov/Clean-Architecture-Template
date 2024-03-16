@@ -2,7 +2,7 @@
 
 namespace Template.Domain.Users;
 
-public interface IUserRepository : IRepository<User>
+public interface IUsersRepository : IRepository<User>
 {
     Task<User?> GetByIdAsync(UserId userId);
 }

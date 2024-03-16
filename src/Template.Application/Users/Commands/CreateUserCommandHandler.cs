@@ -9,11 +9,11 @@ public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, Resul
 {
     IStorage m_storage;
 
-    IUserRepository m_userRepository;
+    IUsersRepository m_userRepository;
 
     TimeProvider m_timeProvider;
 
-    public CreateUserCommandHandler(IStorage storage, IUserRepository userRepository, TimeProvider timeProvider)
+    public CreateUserCommandHandler(IStorage storage, IUsersRepository userRepository, TimeProvider timeProvider)
     {
         m_storage = storage;
         m_userRepository = userRepository;
@@ -31,7 +31,7 @@ public class CreateUserCommandHandler : ICommandHandler<CreateUserCommand, Resul
 
         User user = new (userName.Value, m_timeProvider.GetUtcNow().UtcDateTime);
 
-        m_userRepository.Create(user);
+        await m_userRepository.Create(user);
 
         await m_storage.SaveChangesAsync(cancellationToken);
 

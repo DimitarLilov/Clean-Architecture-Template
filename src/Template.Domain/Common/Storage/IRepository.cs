@@ -6,7 +6,7 @@ public interface IRepository<TEntity> where TEntity : AggregateRoot
 {
     Task<IReadOnlyList<TEntity>> GetAll();
 
-    void Create(TEntity entity);
+    Task Create(TEntity entity);
 
     void Update(TEntity entity);
 

@@ -6,9 +6,9 @@ namespace Template.Application.Users.Queries.GetById;
 
 public class GetUserByIdQueryHandler : IQueryHandler<GetUserByIdQuery, Result<UserDto>>
 {
-    IUserRepository m_userRepository;
+    IUsersRepository m_userRepository;
 
-    public GetUserByIdQueryHandler(IUserRepository userRepository)
+    public GetUserByIdQueryHandler(IUsersRepository userRepository)
     {
         m_userRepository = userRepository;
     }
