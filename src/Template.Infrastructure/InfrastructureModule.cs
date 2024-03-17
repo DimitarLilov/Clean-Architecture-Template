@@ -5,6 +5,7 @@ using Template.Domain.Users;
 using Template.Infrastructure.Database;
 using Template.Infrastructure.Users;
 
+
 namespace Template.Infrastructure;
 
 public static class InfrastructureModule

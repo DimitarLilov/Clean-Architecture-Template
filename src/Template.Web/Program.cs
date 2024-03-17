@@ -1,11 +1,17 @@
 using Template.Domain;
 using Template.Application;
 using Template.Infrastructure;
+using FastEndpoints;
+using FastEndpoints.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddFastEndpoints();
+builder.Services.SwaggerDocument();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly, typeof(ApplicationModule).Assembly));
+builder.Services.AddSingleton(TimeProvider.System);
+
 builder.Services
     .AddDomainModule()
     .AddApplicationModule()
@@ -13,12 +19,11 @@ builder.Services
 
 var app = builder.Build();
 
+app.UseFastEndpoints(e => e.Errors.UseProblemDetails());
+
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerGen();
 }
-
-app.UseHttpsRedirection();
 
 app.Run();

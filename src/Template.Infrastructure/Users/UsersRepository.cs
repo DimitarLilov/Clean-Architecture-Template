@@ -6,7 +6,7 @@ namespace Template.Infrastructure.Users;
 
 public class UsersRepository : Repository<User>, IUsersRepository
 {
-    protected UsersRepository(ApplicationContext dbContext) : base(dbContext)
+    public UsersRepository(ApplicationContext dbContext) : base(dbContext)
     {
     }
 
